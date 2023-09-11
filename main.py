@@ -19,6 +19,7 @@ def get_weather_report():
 
 def send_weather_report():
     data = get_weather_report()
+    today = data["daily"]["time"][0]
     location = [data["latitude"], data["longitude"]]
     temp_max = data["daily"]["temperature_2m_max"][0]
     temp_min = data["daily"]["temperature_2m_min"][0]
@@ -30,10 +31,12 @@ def send_weather_report():
     # print(location)
 
     weather_report = (
-        f"Good Morning! Here is your weather report for today:\n"
+        f"Good Morning! Here is your weather report for {today}:\n"
         f"Lat, Long: {location}\n"
-        f"Min and Max temperature: {temp_min}, {temp_max}°C\n"
-        f"Feels like: {apparent_temp_min}, {apparent_temp_max}°C\n"
+        f"Min temperature: {temp_min}°C\n"
+        f"Max temperature: {temp_max}°C\n"
+        f"Feels like: {apparent_temp_min}°C\n"
+        f"Feels like: {apparent_temp_max}°C\n"
         f"Sunrise: {sunrise}\n"
         f"Sunset: {sunset}\n"
         f"Chance of rain: {precipitation}%\n"
